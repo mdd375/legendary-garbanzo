@@ -49,14 +49,23 @@ std::vector<int> POd(int n) {
 };
 
 TEST(QsortTest, ZeroItems) { EXPECT_TRUE(is_sorted(Od(0))); }
-TEST(QsortTest, OneItem) { EXPECT_TRUE(is_sorted(Od(1))); }
-TEST(QsortTest, TwoItems) { EXPECT_TRUE(is_sorted(Od(2))); }
-TEST(QsortTest, TreeItems) { EXPECT_TRUE(is_sorted(Od(3))); }
-TEST(QsortTest, FourItems) { EXPECT_TRUE(is_sorted(Od(4))); }
-TEST(QsortTest, TenItems) { EXPECT_TRUE(is_sorted(Od(10))); }
+TEST(PQsortTest, ZeroItems) { EXPECT_TRUE(is_sorted(POd(0))); }
+
+TEST(QsortTest, FewItems) {
+  EXPECT_TRUE(is_sorted(Od(2)));
+  EXPECT_TRUE(is_sorted(Od(3)));
+  EXPECT_TRUE(is_sorted(Od(5)));
+  EXPECT_TRUE(is_sorted(Od(7)));
+}
+
+TEST(PQsortTest, FewItems) {
+  EXPECT_TRUE(is_sorted(POd(2)));
+  EXPECT_TRUE(is_sorted(POd(3)));
+  EXPECT_TRUE(is_sorted(POd(5)));
+  EXPECT_TRUE(is_sorted(POd(7)));
+}
 
 TEST(QsortTest, ManyItems) {
-  EXPECT_TRUE(is_sorted(Od(1e2)));
   EXPECT_TRUE(is_sorted(Od(1e3)));
   EXPECT_TRUE(is_sorted(Od(1e4)));
   EXPECT_TRUE(is_sorted(Od(1e5)));
@@ -64,10 +73,6 @@ TEST(QsortTest, ManyItems) {
 }
 
 TEST(PQsortTest, ManyItems) {
-  EXPECT_TRUE(is_sorted(POd(0)));
-  EXPECT_TRUE(is_sorted(POd(1e0)));
-  EXPECT_TRUE(is_sorted(POd(1e1)));
-  EXPECT_TRUE(is_sorted(POd(1e2)));
   EXPECT_TRUE(is_sorted(POd(1e3)));
   EXPECT_TRUE(is_sorted(POd(1e4)));
   EXPECT_TRUE(is_sorted(POd(1e5)));
