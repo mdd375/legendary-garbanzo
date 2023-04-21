@@ -1,5 +1,5 @@
-﻿#include "ඞquicksortඞ/parallel.hpp"
-#include "ඞquicksortඞ/unparallel.hpp"
+﻿#include "quicksort/parallel.hpp"
+#include "quicksort/unparallel.hpp"
 #include "gtest/gtest.h"
 #include <cstdlib>
 #include <vector>
