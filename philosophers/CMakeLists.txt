@@ -1,1 +1,1 @@
-add_executable(philosophers philosophers.cpp)
+add_library(philosophers philosophers.cpp)

@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <vector>
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <chrono>
@@ -11,10 +12,9 @@
 #include <thread>
 #include <time.h>
 
-constexpr int N = 5;
 constexpr auto SLEEP_TIME = std::chrono::seconds(1);
 
-std::mutex forks[N];
+std::vector<std::mutex> forks;
 
 inline auto now() {
   auto now = std::chrono::system_clock::now();
@@ -59,9 +59,9 @@ inline void log(int id, std::string action) {
             << action << color(-1) << std::endl;
 }
 
-void philosopher(int id, int lifetime) {
+void philosopher(int id, int number, int lifetime) {
   int lfork = id;
-  int rfork = (id + 1) % N;
+  int rfork = (id + 1) % number;
   std::string message;
 
   for (int i = 0; i < lifetime; i++) {
@@ -86,17 +86,17 @@ void philosopher(int id, int lifetime) {
   log(id, "washed up and got a job");
 }
 
-int main() {
+bool solve(int number) {
   if (std::getenv("TERM") != nullptr) {
     is_support_color = true;
   }
   std::srand(std::time(nullptr));
-  std::thread philosophers[N];
-  for (int i = 0; i < N; i++)
-    philosophers[i] = std::thread(philosopher, i, std::rand() % 20);
+  auto philosophers = std::vector<std::thread>(number);
+  forks = std::vector<std::mutex>(number);
+  for (int i = 0; i < number; i++)
+    philosophers[i] = std::thread(philosopher, i, number, std::rand() % 5);
 
-  for (int i = 0; i < N; i++)
+  for (int i = 0; i < number; i++)
     philosophers[i].join();
-
-  return 0;
+  return true;
 }
