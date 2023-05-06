@@ -94,7 +94,7 @@ bool solve(int number) {
   auto philosophers = std::vector<std::thread>(number);
   forks = std::vector<std::mutex>(number);
   for (int i = 0; i < number; i++)
-    philosophers[i] = std::thread(philosopher, i, number, std::rand() % 5);
+    philosophers[i] = std::thread(philosopher, i, number, std::rand() % 10 + 3);
 
   for (int i = 0; i < number; i++)
     philosophers[i].join();
