@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(AWESOME_LABS)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 #⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀ 
 #⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀⠀⠀⠀⠀⠀ 
@@ -38,4 +38,5 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 include_directories(.)
+add_subdirectory(philosophers)
 add_subdirectory(tests)
